@@ -7,14 +7,12 @@ public class Enemy : MonoBehaviour
     public float health = 100f;
     public float speed;
 
-    static public Dictionary<string, List<Enemy>> enemyByType;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
-
+    
     // Update is called once per frame
     void Update()
     {

@@ -4,37 +4,63 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    static public List<GameObject> enemyList = new List<GameObject>();
+
     public float speed;
     public float stoppingDistance;
-
-    private Transform target;
+    public float neighborRadius;
+    public Transform target;
+    private Vector3 moveVector;
     private SpriteRenderer spriteRenderer;
-    private 
+    private float timeSinceBoidCalc;
+    private Boids boidScript;
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        enemyList.Add(this.gameObject);
+        timeSinceBoidCalc = 0f;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        boidScript = GetComponent<Boids>();
+        moveVector = boidScript.CalculateBoid(enemyList, FetchNeighbors(), target).normalized;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Vector2.Distance(transform.position, target.position) > stoppingDistance)
+        if(timeSinceBoidCalc > .2f)
         {
-            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-        }
-        if(transform.position.x - target.position.x <0)
-        {
-            transform.localScale = new Vector3(-.15f, .15f, 1);
+            timeSinceBoidCalc = 0f;
+            moveVector = boidScript.CalculateBoid(enemyList, FetchNeighbors(), target).normalized;
         }
         else
         {
-            transform.localScale = new Vector3(.15f, .15f, 1);
+            timeSinceBoidCalc = Time.deltaTime+timeSinceBoidCalc;
         }
-    }
-    private void FetchObstacles()
-    {
+        transform.position +=  moveVector* speed * Time.deltaTime;
 
+    }
+    private void OnDestroy()
+    {
+        enemyList.Remove(this.gameObject);
+    }
+    private List<GameObject> FetchNeighbors()
+    {
+        List<GameObject> neighborList= new List<GameObject>();
+        Collider2D[] results;
+        LayerMask mask = LayerMask.GetMask("Obstacles");
+        results = Physics2D.OverlapCircleAll(transform.position, neighborRadius, mask);
+        foreach (Collider2D result in results)
+        {
+            if(result.gameObject != this.gameObject)
+                neighborList.Add(result.gameObject);
+        }
+        return neighborList;
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+     //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
+        Gizmos.DrawWireSphere(transform.position, neighborRadius);
     }
 }

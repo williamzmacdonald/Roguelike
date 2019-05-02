@@ -40,7 +40,6 @@ public class PlayerAttack : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("collision");
         if (other.gameObject.tag == "Enemy")
         {
             Destroy(other.gameObject);

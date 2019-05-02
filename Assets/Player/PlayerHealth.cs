@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {//if colliding with an enemy and not invulnerable, take damage and start invulnarability
-        if (collision.gameObject.tag == "Enemy" && invulnerable == false)
+        if (collision.gameObject.tag == "EnemyAttack" && invulnerable == false)
         {
             Debug.Log("Ow!");
             health--;

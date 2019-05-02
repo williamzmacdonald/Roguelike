@@ -65,8 +65,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -573082653
-  m_SortingLayer: 1
+  m_SortingLayerID: 921799147
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300002, guid: 078dc3b19879e7c43adea417cad91980, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -91,9 +91,10 @@ GameObject:
   - component: {fileID: 6349384135700049873}
   - component: {fileID: 6349384135700049874}
   - component: {fileID: 6349384135700049901}
-  - component: {fileID: 6349384135700049900}
   - component: {fileID: 345259713957260154}
-  m_Layer: 0
+  - component: {fileID: 6349384137277669263}
+  - component: {fileID: 6349384137277669264}
+  m_Layer: 8
   m_Name: Goblin
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -149,8 +150,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -573082653
-  m_SortingLayer: 1
+  m_SortingLayerID: 921799147
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3dc792a5fe127b444a85e0ad4ffe782d, type: 3}
   m_Color: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
@@ -196,20 +197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6fae439b9c39e44bffd9ac8e2a53bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6349384135700049900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6349384135700049878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 197504695e6421e46b7d0677503e7c9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  stoppingDistance: 0.3
 --- !u!60 &345259713957260154
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -531,3 +518,34 @@ PolygonCollider2D:
       - {x: -2.23, y: -0.17999999}
       - {x: -2.25, y: -0.21}
       - {x: -2.23, y: -0.21}
+--- !u!114 &6349384137277669263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6349384135700049878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e4288f7a0b2bd049b43b0c7b3602968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  stoppingDistance: 0
+  neighborRadius: 3.5
+  target: {fileID: 0}
+--- !u!114 &6349384137277669264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6349384135700049878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df6fe5f4cb6b54d83fcf7f92447f3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  avoidDistance: 0.1
+  avoidFactor: 1
+  targetFactor: 2
